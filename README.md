@@ -11,19 +11,19 @@ An illustrative example when using [Ginkgo](https://github.com/onsi/ginkgo):
 ```go
 It("is a multi-By test", func(){
     outer := Deferrer{}
-     defer outer.Cleanup()
+    defer outer.Cleanup()
 
-     var f *os.File // ...a By-spanning resource
-     By("allocates some resource", func(){
-         f, _ := os.Open("foobar")
-         // f.Close() returns something, so we need to wrap it.
-         outer.Defer(func(){_ = f.Close()})
-     })
+    var f *os.File // ...a By-spanning resource
+    By("allocates some resource", func(){
+        f, _ := os.Open("foobar")
+        // f.Close() returns something, so we need to wrap it.
+        outer.Defer(func(){_ = f.Close()})
+    })
 
-     By("uses some resource", func(){
-         var b byte[256]
-           _, _ = f.Read(b)
-     })
+    By("uses some resource", func(){
+        var b byte[256]
+        _, _ = f.Read(b)
+    })
 })
 ```
 
